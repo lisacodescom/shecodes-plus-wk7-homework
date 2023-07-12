@@ -11,16 +11,18 @@
 <body>
     <div class="container">
      <div class="wrapper">
+        <form class="search-form" id="search-form">
             <h1> 
                 <div class="row">
                     <div class="col-9">
-                        <input id="city-input" class="form-control" type="text" placeholder="Type a city" aria-label="default input example"></input>
+                        <input id="city-input" class="form-control" type="search" placeholder="Type a city"></input>
                     </div>
                     <div class="col-3">
                         <input id = "search-btn" class="btn btn-primary" type="submit" value="Submit"></button>
                     </div>
                 </div>
             </h1>
+            </form>
             <div>
                 <div class="row">
                     <div class="col-6">
@@ -34,7 +36,7 @@
                      <ul>
                         <li>Temp: <span id="temperature"></span>°C</li>
                         <li>Feels like: <span id="feel-like"></span>°C</li>
-                        <li>Wind speed: <span id="wind"></span></li>
+                        <li>Wind speed: <span id="wind"></span>km/h</li>
                         
                      </ul>
                     </div>
