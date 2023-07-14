@@ -1,3 +1,30 @@
+function displayForecast(response){
+  
+  let forecastElement = document.querySelector("#forecast")
+  let forecastHTML = `<div class ="row">`
+  let days = ["Thu", "Fri", "Sat", "Sun"]
+  days.forEach(function (day){
+  forecastHTML =
+    forecastHTML +`
+                               <div class="col-2">
+                                ${day}
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAdVJREFUaN7tmc1thDAQRimBElwCJVBCSvAxR5fgEiiBEiiBErhyIx24A2cc2WhiAf4ZA1rJkZ4UZZPN9/AwHrON1rr5ZJoqUAWqQBWoAlWgxJf++WaAAGZAAdpD2dfM7zDS/yopAGE6YDoIHMLIdK8KQIAWGIAtQ8Bh/r59bQWQjCBILCkSJIF1XVuAA9Jivm9ROd0ukS0AQTtgA7SH+Vn31EoEBSAMA2YUUAHiJDyWcCtBuidIArZEroJewVEpjQSJjiIgMsMbpHdjf53sCcEWSxEYCQKOyZQhkshZBZYkYEtHeLVPQSGJnHIS0QI2/FIo+L+VILTXOUVA3BD+D3Q/pAqoFIEebUxFQQLJN/Ojo0TEqDG/JgBv1hdgeVNAP4CKPSvkCKiCQc1KSMRs2+x902hO/Z4cYFhgWOQHY8zo9hOKgCCGH71BEXcqHjEBKDft5gowypVH4YeLgKE9ZSO10cxz7z7TFJqxOEUgZxyYbPi+0M4uSRuZPYCnCPBA6TwrYCWWyFbJImo/FTMpM6pAG5CYvDO0LDii7x2JNAtdSGxuQyp41Q87UqkHW8NJzYsbw+8d6Y5Hi+7qbw8IyOIPd9HRVD8qUD8fqAJVoApUgSrwqfwCJ6xaZshM+xMAAAAASUVORK5CYII=" width="40">
+                                20° 18°
+                               </div>`
+  
+})
+ forecastHTML = forecastHTML + `</div>`;                            
+  forecastElement.innerHTML = forecastHTML
+}
+
+
+function getForcast(coordinates){
+  let apiKey = "f2c2fbe1921af33c1d9afdc04239ba4f";
+  let apiUrl = `api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKey}&units=metric`;
+  
+  
+}
+
 function displayWeatherCondition(response){
     document.querySelector("#city").innerHTML = response.data.name
     let temperatureElement = document.querySelector("#temperature")
@@ -8,12 +35,15 @@ function displayWeatherCondition(response){
     feelLikeElement.innerHTML = response.data.main.feels_like
     let windElement = document.querySelector("#wind");
     windElement.innerHTML = response.data.wind.speed
+    getForcast(response.coordinates);
 }
     
     function searchCity(city){
-        let apiKey = "f2c2fbe1921af33c1d9afdc04239ba4f";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+         let apiKey = "f2c2fbe1921af33c1d9afdc04239ba4f";
+         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        console.log(apiUrl);
         axios.get(apiUrl).then(displayWeatherCondition)
+       
     }
 
     function handleSubmit(event) {
@@ -53,4 +83,5 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
-searchCity("New York");
+searchCity("dallas")
+displayForecast()
