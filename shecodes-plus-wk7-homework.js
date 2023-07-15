@@ -1,5 +1,5 @@
 function displayForecast(response){
-  
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast")
   let forecastHTML = `<div class ="row">`
   let days = ["Thu", "Fri", "Sat", "Sun"]
@@ -18,10 +18,11 @@ function displayForecast(response){
 }
 
 
-function getForcast(coordinates){
+function getForcast(coord){
+
   let apiKey = "f2c2fbe1921af33c1d9afdc04239ba4f";
-  let apiUrl = `api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKey}&units=metric`;
-  
+  let apiUrl = `api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}&units=metric`;
+ axios.get(apiUrl).then(displayForecast)
   
 }
 
@@ -35,14 +36,14 @@ function displayWeatherCondition(response){
     feelLikeElement.innerHTML = response.data.main.feels_like
     let windElement = document.querySelector("#wind");
     windElement.innerHTML = response.data.wind.speed
-    getForcast(response.coordinates);
+    getForcast(response.data.coord);
 }
     
     function searchCity(city){
          let apiKey = "f2c2fbe1921af33c1d9afdc04239ba4f";
          let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-        console.log(apiUrl);
-        axios.get(apiUrl).then(displayWeatherCondition)
+        console.log(apiUrl)
+         axios.get(apiUrl).then(displayWeatherCondition)
        
     }
 
