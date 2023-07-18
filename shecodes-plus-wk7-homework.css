@@ -17,3 +17,14 @@ li{
   text-align: center;
   color: #000;
 }
+#city{
+  font-size: 50px;
+  font-weight: bold;
+}
+.weather-forecast-temperature-min
+{
+  opacity: 0.5
+}
+.metric{
+  opacity: 0.5
+}

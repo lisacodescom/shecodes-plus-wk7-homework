@@ -15,8 +15,7 @@ function displayForecast(response){
   
   forecast.forEach(function (forecastDay,index) {
     if (index < 6){
-    forecastHTML +=
-      `
+    forecastHTML += `
            <div class="col-2">
           <div class="weather-forecast-date">${displayDay(forecastDay.dt)}</div>
           <img
@@ -26,10 +25,11 @@ function displayForecast(response){
           alt=""
           width="42"
         />
-          <span>${Math.round(forecastDay.temp.max)}</span>°C ~ <span>${
-        Math.round(forecastDay.temp.min)
-      }</span>°C
-            </div>`
+          <span>${Math.round(forecastDay.temp.max)}</span>°C <br>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}</span><span class="metric">°C</span>
+            </div>`;
     }
   });
  forecastHTML = forecastHTML + `</div>`;                            
@@ -51,6 +51,8 @@ function displayWeatherCondition(response){
     document.querySelector("#city").innerHTML = response.data.name
     let temperatureElement = document.querySelector("#temperature")
     temperatureElement.innerHTML = response.data.main.temp
+    let humidityElement = document.querySelector("#humidity")
+    humidityElement.innerHTML = response.data.main.humidity
     let discriptionElement = document.querySelector("#discription")
     discriptionElement.innerHTML = response.data.weather[0].description
     let feelLikeElement = document.querySelector("#feel-like")
